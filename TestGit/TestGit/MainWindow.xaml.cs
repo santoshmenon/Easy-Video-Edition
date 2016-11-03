@@ -23,6 +23,7 @@ namespace TestGit
         public MainWindow()
         {
             InitializeComponent();
+            MessageBox.Show("Patate");
         }
     }
 }
