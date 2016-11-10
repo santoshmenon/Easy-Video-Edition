@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:EasyVideoEdition.View"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White" >
+        <Button Content="Ouvrir un ficher vidéo" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Padding="5"/>
     </Grid>
 </UserControl>
