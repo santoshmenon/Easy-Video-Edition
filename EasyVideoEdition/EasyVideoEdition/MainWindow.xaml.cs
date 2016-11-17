@@ -1,4 +1,5 @@
 ﻿using EasyVideoEdition.View;
+using EasyVideoEdition.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,9 @@ namespace EasyVideoEdition
         public MainWindow()
         {
             InitializeComponent();
+        
             ViewOpenFile ViewOpenFile = new ViewOpenFile();
+            ViewOpenFile.DataContext = new MainViewModel();
             ActiveView.Content = ViewOpenFile;
         }
     }
