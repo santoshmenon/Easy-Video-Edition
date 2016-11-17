@@ -8,5 +8,7 @@ namespace EasyVideoEdition.Model
 {
     class VideoPlayer
     {
+
+        int a;
     }
 }
