@@ -29,7 +29,7 @@ namespace EasyVideoEdition.ViewModel
 
         #region CommandList
         /// <summary>
-        /// 
+        /// Getter and Setter for the OpenFileCommand. This Command launch the method OpenFile. 
         /// </summary>
         public ICommand OpenFileCommand
         {
@@ -38,7 +38,7 @@ namespace EasyVideoEdition.ViewModel
         #endregion
 
         /// <summary>
-        /// 
+        /// Creation of the MainViewModel. Nottably, create the commands.  
         /// </summary>
         public MainViewModel()
         {
