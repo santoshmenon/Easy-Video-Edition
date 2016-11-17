@@ -8,5 +8,6 @@ namespace EasyVideoEdition.Model
 {
     class VideoPlayer
     {
+        String GitHubCdeLAMREDE;
     }
 }
