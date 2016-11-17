@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\FileBrowser.cs" />
+    <Compile Include="Model\Subtitle.cs" />
+    <Compile Include="Model\Subtitles.cs" />
+    <Compile Include="ObjectBase.cs" />
     <Compile Include="View\ViewOpenFile.xaml.cs">
       <DependentUpon>ViewOpenFile.xaml</DependentUpon>
     </Compile>
