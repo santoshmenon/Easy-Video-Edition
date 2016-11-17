@@ -67,9 +67,10 @@ namespace EasyVideoEdition.Model
             if (opf.ShowDialog() != false)
             {
                 filePath = opf.FileName;
+                fileData = File.ReadAllBytes(filePath);
             }
 
-            fileData = File.ReadAllBytes(filePath);
+           
         }
 
         public void SaveFile()
