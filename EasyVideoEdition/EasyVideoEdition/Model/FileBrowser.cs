@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace EasyVideoEdition.Model
     {
         #region Attributes
         private string _filePath;
+        private byte[] _fileData;
 
         /// <summary>
         /// Contains the filePath of the file.
@@ -36,6 +38,22 @@ namespace EasyVideoEdition.Model
                 RaisePropertyChanged("filePath");
             }
         }
+
+        /// <summary>
+        /// Contains the file data.
+        /// </summary>
+        public byte[] fileData
+        {
+            get
+            {
+                return _fileData;
+            }
+            set
+            {
+                _fileData = value;
+                RaisePropertyChanged("fileData");
+            }
+        }
         #endregion
 
         /// <summary>
@@ -50,6 +68,20 @@ namespace EasyVideoEdition.Model
             {
                 filePath = opf.FileName;
             }
+
+            fileData = File.ReadAllBytes(filePath);
+        }
+
+        public void SaveFile()
+        {
+            SaveFileDialog svf = new SaveFileDialog();
+           
+            if (svf.ShowDialog() != false)
+            {
+                FileStream fs = new FileStream(svf.FileName, FileMode.Create);
+                fs.Write(fileData, 0, fileData.Length);
+            }
+          
         }
 
     }

@@ -35,6 +35,14 @@ namespace EasyVideoEdition.ViewModel
         {
             get; private set;
         }
+
+        /// <summary>
+        /// Getter and Setter for the SaveFileCommand. This Command launch the method SaveFile. 
+        /// </summary>
+        public ICommand SaveFileCommand
+        {
+            get; private set;
+        }
         #endregion
 
         /// <summary>
@@ -44,6 +52,7 @@ namespace EasyVideoEdition.ViewModel
         {
             browser = new FileBrowser();
             OpenFileCommand = new RelayCommand(OpenFile);
+            SaveFileCommand = new RelayCommand(SaveFile);
         }
 
         #region CommandDefinition
@@ -54,8 +63,16 @@ namespace EasyVideoEdition.ViewModel
         {
             browser.OpenFile();
         }
-        
-        
+
+        /// <summary>
+        /// Method that launch the OpenFile of the Filebrowser. 
+        /// </summary>
+        private void SaveFile()
+        {
+            browser.SaveFile();
+        }
+
+
         #endregion
     }
 }
