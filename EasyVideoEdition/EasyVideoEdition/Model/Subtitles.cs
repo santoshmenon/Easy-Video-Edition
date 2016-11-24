@@ -200,6 +200,8 @@ namespace EasyVideoEdition.Model
             {
                 MessageBox.Show(sub.startTime + sub.endTime + sub.subtitleText);
             }
+
+            int a = 18;
         }
 
 
