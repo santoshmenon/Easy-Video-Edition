@@ -19,7 +19,6 @@ namespace EasyVideoEdition.Model
         #region Attributes
         private ObservableCollection<Subtitle> _subtitlesCollection;
         private String _srtPath;
-        private String NUMBER_FORMAT;
         #endregion
         #region Get/Set
         /// <summary>
@@ -34,7 +33,7 @@ namespace EasyVideoEdition.Model
             set
             {
                 _srtPath = value;
-                OnPropertyChanged("srtPath");
+                RaisePropertyChanged("srtPath");
             }
         }
         /// <summary>
@@ -49,7 +48,7 @@ namespace EasyVideoEdition.Model
             set
             {
                 _subtitlesCollection = value;
-                OnPropertyChanged("subtitlesCollection");
+                RaisePropertyChanged("subtitlesCollection");
             }
         }
         #endregion
@@ -201,7 +200,6 @@ namespace EasyVideoEdition.Model
                 MessageBox.Show(sub.startTime + sub.endTime + sub.subtitleText);
             }
 
-            int a = 18;
         }
 
 

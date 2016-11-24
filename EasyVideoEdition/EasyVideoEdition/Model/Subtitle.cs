@@ -29,7 +29,7 @@ namespace EasyVideoEdition.Model
             }
             set{
                 _startTime = value;
-                OnPropertyChanged("startTime");
+                RaisePropertyChanged("startTime");
             }
         }
         /// <summary>
@@ -44,7 +44,7 @@ namespace EasyVideoEdition.Model
             set
             {
                 _endTime = value;
-                OnPropertyChanged("endTime");
+                RaisePropertyChanged("endTime");
             }
         }
         /// <summary>
@@ -59,7 +59,7 @@ namespace EasyVideoEdition.Model
             set
             {
                 _subtitleText = value;
-                OnPropertyChanged("subtitleText");
+                RaisePropertyChanged("subtitleText");
             }
         }
         #endregion
