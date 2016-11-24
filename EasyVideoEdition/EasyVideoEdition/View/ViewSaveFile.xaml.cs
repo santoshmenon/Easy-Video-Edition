@@ -1,6 +1,4 @@
-﻿using EasyVideoEdition.View;
-using EasyVideoEdition.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EasyVideoEdition
+namespace EasyVideoEdition.View
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour ViewSaveFile.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ViewSaveFile : UserControl
     {
-        public MainWindow()
+        public ViewSaveFile()
         {
             InitializeComponent();
-        
-            ViewOpenFile ViewOpenFile = new ViewOpenFile();
-            ViewOpenFile.DataContext = new MainViewModel();
-            ActiveView.Content = ViewOpenFile;
         }
     }
 }
