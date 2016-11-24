@@ -7,7 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid Background="White">
-        <Button Content="Ouvrir un ficher vidéo" HorizontalAlignment="Center" Padding="5" VerticalAlignment="Top" Command="{Binding OpenFileCommand}" Margin="0,60,0,0"/>
+        <Button Content="Ouvrir un ficher vidéo" HorizontalAlignment="Center" Padding="5" VerticalAlignment="Top" Command="{Binding OpenFileCommand}" Margin="0,60,0,0" IsEnabled="{Binding browser.isFileOpened}"/>
         <Button Content="Sauvegarder un ficher vidéo" HorizontalAlignment="Center" Padding="5" VerticalAlignment="Top" Command="{Binding SaveFileCommand}" Margin="0,100,0,0"/>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="152,145,152,0" Content="{Binding browser.filePath}" Width="496" Height="31" HorizontalContentAlignment="Center"/>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="152,181,152,0" Content="{Binding browser.fileTempPath}" Width="496" Height="31" HorizontalContentAlignment="Center"/>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="152,217,152,0" Content="{Binding browser.fileSize}" Width="496" Height="31" HorizontalContentAlignment="Center"/>
     </Grid>
 </UserControl>

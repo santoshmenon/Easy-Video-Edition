@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\FileBrowser.cs" />
-    <Compile Include="Model\VideoPlayer.cs" />
     <Compile Include="ObjectBase.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
