@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:EasyVideoEdition.View"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="White">
             
     </Grid>
 </UserControl>
