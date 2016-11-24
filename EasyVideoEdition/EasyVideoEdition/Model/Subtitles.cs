@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectB;
+using System.IO;
+using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace EasyVideoEdition.Model
 {
@@ -16,6 +19,7 @@ namespace EasyVideoEdition.Model
         #region Attributes
         private ObservableCollection<Subtitle> _subtitlesCollection;
         private String _srtPath;
+        private String NUMBER_FORMAT;
         #endregion
         #region Get/Set
         /// <summary>
@@ -58,7 +62,7 @@ namespace EasyVideoEdition.Model
         /// <param name="srtPath">Path of the video</param>
         public Subtitles(String srtPath)
         {
-            srtPath = CreateSrtFileName(srtPath);
+            this.srtPath = CreateSrtFileName(srtPath);
             subtitlesCollection = new ObservableCollection<Subtitle>();
         }
 
@@ -70,13 +74,15 @@ namespace EasyVideoEdition.Model
         public String CreateSrtFileName(String originalPath)
         {
             String filePath;
-            int endIndex = originalPath.Length;
+            int endIndex = originalPath.Length-1;
             /* Remove the extension of the pah searching the '.' at the end */
             while(originalPath[endIndex] != '.')
             {    
                 endIndex--;
             }
             filePath = originalPath.Remove(endIndex + 1);                                                                        //Remove chars from the '.' to the end
+            filePath = filePath + "srt";                                                                                         //Write srt after the '.' in the file path
+
             return filePath;
         }
 
@@ -102,7 +108,101 @@ namespace EasyVideoEdition.Model
         public void EditSubtitle(int index, String startTime, String endTime, String text)
         {
             if(subtitlesCollection.Count > index)
+            {
+                subtitlesCollection[index].EditSubtile(startTime, endTime, text);
+            }
                 
         }
+
+        /// <summary>
+        /// Delete a subtitle
+        /// </summary>
+        /// <param name="index">Index of the subtitle in the list</param>
+        public void DeleteSubtitle(int index)
+        {
+            if (subtitlesCollection.Count > index)
+            {
+                subtitlesCollection.RemoveAt(index);
+            }
+        }
+
+        /// <summary>
+        /// Create the srt file corresponding to the video
+        /// </summary>
+        public void CreateSrtFile()
+        {
+            int i = 0;
+            int indexSubtitle = 1;
+            String[] subtitleFormat = new String[subtitlesCollection.Count * 3];
+
+            /* Write all subtitles in the format of srt file */
+            foreach(Subtitle sub in subtitlesCollection)
+            {
+                subtitleFormat[i+0] = indexSubtitle.ToString();                                                                  //Write the index (number) of the subtitle
+                subtitleFormat[i+1] = sub.startTime + " --> " + sub.endTime;                                                     //Write the both start and end time with the good syntaxe
+                subtitleFormat[i+2] = sub.subtitleText + "\n";                                                                   //Write the content of the subtitle
+                i += 3;
+                indexSubtitle++;
+                
+
+            }
+            File.WriteAllLines(srtPath, subtitleFormat);
+        }
+
+        /// <summary>
+        /// Read a srt file and put all subtitles in the collection of subtitles
+        /// </summary>
+        public void ReadSrtFile()
+        {
+            String line;
+            String textRead;
+            String[] times = new String[2];                                                                                      //Both start time and end time for each subtitles
+            Subtitle sub;
+            int index = 1;
+            int ret = 0;
+
+            subtitlesCollection.Clear();                                                                                         //Clear the collection of subtitles
+            StreamReader file = new StreamReader(this.srtPath);
+            while ((line = file.ReadLine()) != null)
+            {
+                if (int.TryParse(line, out ret))
+                {
+                    sub = new Subtitle();
+                    times = new String[2];
+
+                    /* Read both start and end times */
+                    if ((line = file.ReadLine()) != null)
+                    {
+                        times = Regex.Split(line, " --> ");                                                                      //Split the line containing the times
+                    }
+
+                    /* Read the text of the subtitle and add the subtitle to the collection of subtitles*/
+                    if ((line = file.ReadLine()) != null)
+                    {
+                        textRead = line;
+                        sub.EditSubtile(times[0], times[1], textRead);
+                        subtitlesCollection.Add(sub);
+                        index++;
+                    }
+                }
+
+            }
+
+        }
+
+        /// <summary>
+        /// Print all subtitles in MessageBox
+        /// </summary>
+        public void PrintAllSubtitles()
+        {
+            MessageBox.Show("---------------------------");
+            foreach (Subtitle sub in subtitlesCollection)
+            {
+                MessageBox.Show(sub.startTime + sub.endTime + sub.subtitleText);
+            }
+        }
+
+
+
     }
 }

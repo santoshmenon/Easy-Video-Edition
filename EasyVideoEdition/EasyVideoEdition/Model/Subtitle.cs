@@ -64,10 +64,13 @@ namespace EasyVideoEdition.Model
         }
         #endregion
 
-        //test
+        /// <summary>
+        /// Create a subtitle
+        /// </summary>
+        public Subtitle(){}
 
         /// <summary>
-        /// Creates a subtitle
+        /// Creates a subtitle with properties
         /// </summary>
         /// <param name="startTime">Time when the subtitle will start</param>
         /// <param name="endTime">Time when the subtitle will end</param>
