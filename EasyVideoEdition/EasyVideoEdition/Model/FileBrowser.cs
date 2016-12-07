@@ -6,10 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-// namespace: EasyVideoEdition.Model
-//
-// summary:	.
 namespace EasyVideoEdition.Model
 {
     /// <summary>   A file browser. </summary>
@@ -24,7 +20,7 @@ namespace EasyVideoEdition.Model
         private string _fileName;
         private byte[] _fileData;
         private long _fileSize;
-        private bool _isFileOpened;
+        private bool _canOpenFile;
         private FileStream _stream;
 
         /// <summary>
@@ -78,15 +74,15 @@ namespace EasyVideoEdition.Model
         /// <summary>
         /// Indicate that a file is opened. Or not. 
         /// </summary>
-        public bool isFileOpened
+        public bool canOpenFile
         {
             get
             {
-                return _isFileOpened;
+                return _canOpenFile;
             }
             set
             {
-                _isFileOpened = value;
+                _canOpenFile = value;
                 RaisePropertyChanged("isFileOpened");
             }
         }
@@ -143,8 +139,9 @@ namespace EasyVideoEdition.Model
 
         public FileBrowser()
         {
-            isFileOpened = true;
+            canOpenFile = true;
         }
+
         /// <summary>
         /// This method allow the user to open a file brower. The file path is stocked in the attribute filePath.
         /// </summary>
@@ -156,15 +153,10 @@ namespace EasyVideoEdition.Model
             if (opf.ShowDialog() != false)
             {
                 filePath = opf.FileName;
-                fileName = opf.SafeFileName;
-                fileTempPath = "D:\\EVE\\Temp\\vid" + fileName;
 
-                File.Copy(filePath, fileTempPath, true);
-
-                stream = File.OpenRead(fileTempPath);
+                stream = File.OpenRead(filePath);
                 fileSize = stream.Length;
-                isFileOpened = false;
-
+                canOpenFile = false;
             }
 
         }
@@ -178,7 +170,6 @@ namespace EasyVideoEdition.Model
                 FileStream fs = new FileStream(svf.FileName, FileMode.Create);
                 fs.Write(fileData, 0, fileData.Length);
             }
-          
         }
 
     }

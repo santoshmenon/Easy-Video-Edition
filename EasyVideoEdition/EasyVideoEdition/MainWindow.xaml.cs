@@ -25,14 +25,16 @@ namespace EasyVideoEdition
         public MainWindow()
         {
             InitializeComponent();
-        
-            ViewOpenFile ViewOpenFile = new ViewOpenFile();
-            ViewOpenFile.DataContext = new FileOpeningViewModel();
+            //ViewModel Creation
+            MainViewModel mvm = new MainViewModel();
 
+            //View Creation
             ViewChoiceOption ViewChoiceOption = new ViewChoiceOption();
-            ViewChoiceOption.DataContext = new MainViewModel();
 
-            ActiveView.Content = ViewOpenFile;
+            //DataContext Init
+            MainWindowGrid.DataContext = mvm;
+            ViewChoiceOption.DataContext = mvm;
+
             ControlView.Content = ViewChoiceOption;
         }
     }

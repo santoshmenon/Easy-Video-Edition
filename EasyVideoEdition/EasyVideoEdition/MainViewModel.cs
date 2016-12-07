@@ -8,12 +8,32 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using EasyVideoEdition.ViewModel;
 
-namespace EasyVideoEdition.ViewModel
+namespace EasyVideoEdition
 {
+    /// <summary>
+    /// Main View Model, this one control all of the other view model, and allow to switch between them by the use of button.
+    /// </summary>
     class MainViewModel : ObjectBase
     {
         #region Attributes
+        private BaseViewModel _viewModel;
+        public BaseViewModel viewModel
+        {
+            get
+            {
+                return _viewModel;
+            }
+            set
+            {
+                _viewModel = value;
+                RaisePropertyChanged("viewModel");
+            }
+        }
+
+        private FileOpeningViewModel FileOpeningViewModel;
+        private SaveFileViewModel SaveFileViewModel;
 
         #endregion
 
@@ -34,11 +54,14 @@ namespace EasyVideoEdition.ViewModel
         #endregion
 
         /// <summary>
-        /// Creation of the MainViewModel. Nottably, create the commands.  
+        /// Creation of the MainViewModel. Nottably, create the commands, and all of the other view Model
         /// </summary>
         public MainViewModel()
         {
-            //viewModel = new FileOpeningViewModel();
+            FileOpeningViewModel = new FileOpeningViewModel();
+            SaveFileViewModel = new SaveFileViewModel();
+
+            viewModel = FileOpeningViewModel;
             GoToOpenCommand = new RelayCommand(GoToOpen);
             GoToSaveCommand = new RelayCommand(GoToSave);
         }
@@ -48,7 +71,7 @@ namespace EasyVideoEdition.ViewModel
         /// </summary>
         private void GoToOpen()
         {
-            MessageBox.Show("THIS IS A FUCKING TEST");
+            viewModel = FileOpeningViewModel;
         }
 
         /// <summary>
@@ -56,7 +79,7 @@ namespace EasyVideoEdition.ViewModel
         /// </summary>
         private void GoToSave()
         {
-
+            viewModel = SaveFileViewModel;
         }
 
         #region CommandDefinition

@@ -8,9 +8,22 @@ using System.Windows.Input;
 
 namespace EasyVideoEdition.ViewModel
 {
-    class FileOpeningViewModel : ObjectBase
+    /// <summary>
+    /// View Model of the File Opening. Define the command of the file.
+    /// </summary>
+    class FileOpeningViewModel : ObjectBase, BaseViewModel
     {
+
         #region Attributes
+
+        public String name
+        {
+            get
+            {
+                return ("Open File");
+            }
+        }
+
         private FileBrowser _browser;
         public FileBrowser browser
         {
@@ -25,7 +38,6 @@ namespace EasyVideoEdition.ViewModel
             }
         }
         #endregion
-
 
         #region CommandList
         /// <summary>
