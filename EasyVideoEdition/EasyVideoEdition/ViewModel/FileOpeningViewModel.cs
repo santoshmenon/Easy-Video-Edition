@@ -9,13 +9,17 @@ using System.Windows.Input;
 namespace EasyVideoEdition.ViewModel
 {
     /// <summary>
-    /// View Model of the File Opening. Define the command of the file.
+    /// View Model of the File Opening. Define the command needed to open a video file.
     /// </summary>
     class FileOpeningViewModel : ObjectBase, BaseViewModel
     {
 
         #region Attributes
 
+        private FileBrowser _browser;
+        /// <summary>
+        /// Name of the ViewModel
+        /// </summary>
         public String name
         {
             get
@@ -24,7 +28,9 @@ namespace EasyVideoEdition.ViewModel
             }
         }
 
-        private FileBrowser _browser;
+        /// <summary>
+        /// Model of the fileBrower. 
+        /// </summary>
         public FileBrowser browser
         {
             get
@@ -47,41 +53,24 @@ namespace EasyVideoEdition.ViewModel
         {
             get; private set;
         }
-
-        /// <summary>
-        /// Getter and Setter for the SaveFileCommand. This Command launch the method SaveFile. 
-        /// </summary>
-        public ICommand SaveFileCommand
-        {
-            get; private set;
-        }
         #endregion
 
         /// <summary>
-        /// Creation of the MainViewModel. Nottably, create the commands.  
+        /// Creation of the MainViewModel. Create the commands OpenFile and init the Model.
         /// </summary>
         public FileOpeningViewModel()
         {
             browser = new FileBrowser();
             OpenFileCommand = new RelayCommand(OpenFile);
-            SaveFileCommand = new RelayCommand(SaveFile);
         }
 
         #region CommandDefinition
         /// <summary>
-        /// Method that launch the OpenFile of the Filebrowser. 
+        /// Method that launch the OpenFile method of the Filebrowser. 
         /// </summary>
         private void OpenFile()
         {
             browser.OpenFile();
-        }
-
-        /// <summary>
-        /// Method that launch the OpenFile of the Filebrowser. 
-        /// </summary>
-        private void SaveFile()
-        {
-            browser.SaveFile();
         }
 
 

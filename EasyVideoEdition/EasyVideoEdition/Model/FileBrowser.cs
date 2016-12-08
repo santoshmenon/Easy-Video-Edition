@@ -72,7 +72,7 @@ namespace EasyVideoEdition.Model
         }
 
         /// <summary>
-        /// Indicate that a file is opened. Or not. 
+        /// Indicate that a file can be opened. Or not. 
         /// </summary>
         public bool canOpenFile
         {
@@ -83,7 +83,7 @@ namespace EasyVideoEdition.Model
             set
             {
                 _canOpenFile = value;
-                RaisePropertyChanged("isFileOpened");
+                RaisePropertyChanged("canOpenFile");
             }
         }
 
@@ -159,17 +159,6 @@ namespace EasyVideoEdition.Model
                 canOpenFile = false;
             }
 
-        }
-
-        public void SaveFile()
-        {
-            SaveFileDialog svf = new SaveFileDialog();
-           
-            if (svf.ShowDialog() != false)
-            {
-                FileStream fs = new FileStream(svf.FileName, FileMode.Create);
-                fs.Write(fileData, 0, fileData.Length);
-            }
         }
 
     }

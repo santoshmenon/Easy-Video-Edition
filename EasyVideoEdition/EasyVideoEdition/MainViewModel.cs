@@ -13,7 +13,7 @@ using EasyVideoEdition.ViewModel;
 namespace EasyVideoEdition
 {
     /// <summary>
-    /// Main View Model, this one control all of the other view model, and allow to switch between them by the use of button.
+    /// Main View Model, this one control all of the other view model, and allow to switch between them by the use of a button.
     /// </summary>
     class MainViewModel : ObjectBase
     {
@@ -32,16 +32,28 @@ namespace EasyVideoEdition
             }
         }
 
+        //Declaration of the viewModel 
         private FileOpeningViewModel FileOpeningViewModel;
         private SaveFileViewModel SaveFileViewModel;
 
+        //Access right for the different view
+        private bool _editVideoEnabled;
+
+        public bool editVideoEnabled
+        {
+            get
+            {
+                return _editVideoEnabled;
+            }
+            set
+            {
+                _editVideoEnabled = value;
+                RaisePropertyChanged("editVideoEnabled");
+            }
+        }
         #endregion
 
-
         #region CommandList
-        /// <summary>
-        /// THIS IS A TEST !
-        /// </summary>
         public ICommand GoToOpenCommand
         {
             get; private set;
@@ -58,6 +70,9 @@ namespace EasyVideoEdition
         /// </summary>
         public MainViewModel()
         {
+            editVideoEnabled = false;
+
+            //Place the creation of the viewModel here
             FileOpeningViewModel = new FileOpeningViewModel();
             SaveFileViewModel = new SaveFileViewModel();
 
@@ -67,7 +82,7 @@ namespace EasyVideoEdition
         }
 
         /// <summary>
-        /// 
+        /// Open the OpenFile View
         /// </summary>
         private void GoToOpen()
         {
@@ -75,7 +90,7 @@ namespace EasyVideoEdition
         }
 
         /// <summary>
-        /// 
+        /// Open the SaveFil View
         /// </summary>
         private void GoToSave()
         {
