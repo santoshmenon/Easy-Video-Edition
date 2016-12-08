@@ -1,9 +1,12 @@
 ﻿using EasyVideoEdition.Model;
+using EasyVideoEdition.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace EasyVideoEdition.ViewModel
@@ -11,35 +14,20 @@ namespace EasyVideoEdition.ViewModel
     class MainViewModel : ObjectBase
     {
         #region Attributes
-        private FileBrowser _browser;
-        public FileBrowser browser
-        {
-            get
-            {
-                return _browser;
-            }
-            set
-            {
-                _browser = value;
-                RaisePropertyChanged("browser");
-            }
-        }
+
         #endregion
 
 
         #region CommandList
         /// <summary>
-        /// Getter and Setter for the OpenFileCommand. This Command launch the method OpenFile. 
+        /// THIS IS A TEST !
         /// </summary>
-        public ICommand OpenFileCommand
+        public ICommand GoToOpenCommand
         {
             get; private set;
         }
 
-        /// <summary>
-        /// Getter and Setter for the SaveFileCommand. This Command launch the method SaveFile. 
-        /// </summary>
-        public ICommand SaveFileCommand
+        public ICommand GoToSaveCommand
         {
             get; private set;
         }
@@ -50,28 +38,28 @@ namespace EasyVideoEdition.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            browser = new FileBrowser();
-            OpenFileCommand = new RelayCommand(OpenFile);
-            SaveFileCommand = new RelayCommand(SaveFile);
+            //viewModel = new FileOpeningViewModel();
+            GoToOpenCommand = new RelayCommand(GoToOpen);
+            GoToSaveCommand = new RelayCommand(GoToSave);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void GoToOpen()
+        {
+            MessageBox.Show("THIS IS A FUCKING TEST");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void GoToSave()
+        {
+
         }
 
         #region CommandDefinition
-        /// <summary>
-        /// Method that launch the OpenFile of the Filebrowser. 
-        /// </summary>
-        private void OpenFile()
-        {
-            browser.OpenFile();
-        }
-
-        /// <summary>
-        /// Method that launch the OpenFile of the Filebrowser. 
-        /// </summary>
-        private void SaveFile()
-        {
-            browser.SaveFile();
-        }
-
 
         #endregion
     }
