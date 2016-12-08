@@ -155,6 +155,7 @@ namespace EasyVideoEdition.Model
                 filePath = opf.FileName;
 
                 stream = File.OpenRead(filePath);
+
                 fileSize = stream.Length;
                 canOpenFile = false;
             }

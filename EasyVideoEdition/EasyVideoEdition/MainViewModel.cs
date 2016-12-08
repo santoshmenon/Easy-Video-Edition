@@ -37,18 +37,11 @@ namespace EasyVideoEdition
         private SaveFileViewModel SaveFileViewModel;
 
         //Access right for the different view
-        private bool _editVideoEnabled;
-
         public bool editVideoEnabled
         {
             get
             {
-                return _editVideoEnabled;
-            }
-            set
-            {
-                _editVideoEnabled = value;
-                RaisePropertyChanged("editVideoEnabled");
+                return !(FileOpeningViewModel.browser.canOpenFile);
             }
         }
         #endregion
@@ -70,15 +63,14 @@ namespace EasyVideoEdition
         /// </summary>
         public MainViewModel()
         {
-            editVideoEnabled = false;
-
             //Place the creation of the viewModel here
             FileOpeningViewModel = new FileOpeningViewModel();
             SaveFileViewModel = new SaveFileViewModel();
 
             viewModel = FileOpeningViewModel;
             GoToOpenCommand = new RelayCommand(GoToOpen);
-            GoToSaveCommand = new RelayCommand(GoToSave);
+
+            GoToSaveCommand = new RelayCommand(GoToSave, GoToOpenCanExecute);
         }
 
         /// <summary>
@@ -87,6 +79,11 @@ namespace EasyVideoEdition
         private void GoToOpen()
         {
             viewModel = FileOpeningViewModel;
+        }
+
+        private bool GoToOpenCanExecute(object parameter)
+        {
+            return !(FileOpeningViewModel.browser.canOpenFile);
         }
 
         /// <summary>
@@ -100,5 +97,7 @@ namespace EasyVideoEdition
         #region CommandDefinition
 
         #endregion
+
+
     }
 }
