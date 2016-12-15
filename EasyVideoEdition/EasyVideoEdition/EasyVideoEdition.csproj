@@ -58,12 +58,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\FileBrowser.cs" />
+    <Compile Include="Model\Subtitle.cs" />
+    <Compile Include="Model\Subtitles.cs" />
+    <Compile Include="Model\VideoPlayer.cs" />
     <Compile Include="ObjectBase.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\FileOpeningViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\SaveFileViewModel.cs" />
+    <Compile Include="ViewModel\SubtitlesViewModel.cs" />
+    <Compile Include="ViewModel\VideoPlayerViewModel.cs" />
     <Compile Include="View\ViewChoiceOption.xaml.cs">
       <DependentUpon>ViewChoiceOption.xaml</DependentUpon>
     </Compile>
@@ -72,6 +77,12 @@
     </Compile>
     <Compile Include="View\ViewSaveFile.xaml.cs">
       <DependentUpon>ViewSaveFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewSubtitles.xaml.cs">
+      <DependentUpon>ViewSubtitles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewVideoPlayer.xaml.cs">
+      <DependentUpon>ViewVideoPlayer.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +107,14 @@
     <Page Include="View\ViewSaveFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewSubtitles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewVideoPlayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

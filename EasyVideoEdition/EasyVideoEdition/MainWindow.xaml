@@ -13,8 +13,17 @@
         <DataTemplate DataType="{x:Type ViewModels:FileOpeningViewModel}">
             <View:ViewOpenFile />
         </DataTemplate>
+        
         <DataTemplate DataType="{x:Type ViewModels:SaveFileViewModel}">
             <View:ViewSaveFile />
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type ViewModels:VideoPlayerViewModel}">
+            <View:ViewVideoPlayer />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:SubtitlesViewModel}">
+            <View:ViewSubtitles />
         </DataTemplate>
     </Window.Resources>
     

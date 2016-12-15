@@ -15,8 +15,8 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
         <Button Grid.Column="0" Content="Open" Margin="10px" Command="{Binding GoToOpenCommand}"/>
-        <Button Grid.Column="1" Content="View 2" Margin="10px"  IsEnabled="{Binding editVideoEnabled}"/>
-        <Button Grid.Column="2" Content="View 3" Margin="10px" />
+        <Button Grid.Column="1" Content="Player" Margin="10px"   Command="{Binding GoToPlayCommand}"/>
+        <Button Grid.Column="2" Content="Subtile" Margin="10px" Command="{Binding GoToSubCommand}"/>
         <Button Grid.Column="3" Content="View 4" Margin="10px" />
         <Button Grid.Column="4" Content="Save" Margin="10px" Command="{Binding GoToSaveCommand}" />
     </Grid>

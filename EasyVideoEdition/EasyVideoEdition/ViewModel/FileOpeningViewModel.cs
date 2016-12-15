@@ -27,7 +27,8 @@ namespace EasyVideoEdition.ViewModel
                 return ("Open File");
             }
         }
-
+        #endregion
+        #region Get/Set
         /// <summary>
         /// Model of the fileBrower. 
         /// </summary>

@@ -33,15 +33,17 @@ namespace EasyVideoEdition
         }
 
         //Declaration of the viewModel 
-        private FileOpeningViewModel FileOpeningViewModel;
-        private SaveFileViewModel SaveFileViewModel;
+        private FileOpeningViewModel _fileOpeningViewModel;
+        private SaveFileViewModel _saveFileViewModel;
+        private VideoPlayerViewModel _videoPlayerViewModel;
+        private SubtitlesViewModel _subtitlesViewModel;
 
         //Access right for the different view
         public bool editVideoEnabled
         {
             get
             {
-                return !(FileOpeningViewModel.browser.canOpenFile);
+                return !(_fileOpeningViewModel.browser.canOpenFile);
             }
         }
         #endregion
@@ -56,6 +58,16 @@ namespace EasyVideoEdition
         {
             get; private set;
         }
+
+        public ICommand GoToSubCommand
+        {
+            get; private set;
+        }
+
+        public ICommand GoToPlayCommand
+        {
+            get; private set;
+        }
         #endregion
 
         /// <summary>
@@ -64,13 +76,14 @@ namespace EasyVideoEdition
         public MainViewModel()
         {
             //Place the creation of the viewModel here
-            FileOpeningViewModel = new FileOpeningViewModel();
-            SaveFileViewModel = new SaveFileViewModel();
+            _fileOpeningViewModel = new FileOpeningViewModel();
+            _saveFileViewModel = new SaveFileViewModel();
 
-            viewModel = FileOpeningViewModel;
+            viewModel = _fileOpeningViewModel;
             GoToOpenCommand = new RelayCommand(GoToOpen);
-
-            GoToSaveCommand = new RelayCommand(GoToSave, GoToOpenCanExecute);
+            GoToPlayCommand = new RelayCommand(GoToPlay, GoToPlayCanExecute);
+            GoToSubCommand = new RelayCommand(GoToSub, GoToPlayCanExecute);
+            GoToSaveCommand = new RelayCommand(GoToSave);
         }
 
         /// <summary>
@@ -78,12 +91,39 @@ namespace EasyVideoEdition
         /// </summary>
         private void GoToOpen()
         {
-            viewModel = FileOpeningViewModel;
+            viewModel = _fileOpeningViewModel;
         }
 
-        private bool GoToOpenCanExecute(object parameter)
+        /// <summary>
+        /// Open the VideoPlayerView 
+        /// </summary>
+        private void GoToPlay()
         {
-            return !(FileOpeningViewModel.browser.canOpenFile);
+            viewModel = _videoPlayerViewModel;
+        }
+
+        /// <summary>
+        /// Open the Subtile View
+        /// </summary>
+        private void GoToSub()
+        {
+            viewModel = _subtitlesViewModel;
+        }
+
+        /// <summary>
+        /// Indicate if the user can go to the Player and the Subtitle view.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        private bool GoToPlayCanExecute(object parameter)
+        {
+            if (!(_fileOpeningViewModel.browser.canOpenFile))
+            {
+                _videoPlayerViewModel = new VideoPlayerViewModel(_fileOpeningViewModel.browser.filePath);
+                _subtitlesViewModel = new SubtitlesViewModel(_fileOpeningViewModel.browser.filePath);
+            }
+                
+            return !(_fileOpeningViewModel.browser.canOpenFile);
         }
 
         /// <summary>
@@ -91,7 +131,7 @@ namespace EasyVideoEdition
         /// </summary>
         private void GoToSave()
         {
-            viewModel = SaveFileViewModel;
+            viewModel = _saveFileViewModel;
         }
 
         #region CommandDefinition

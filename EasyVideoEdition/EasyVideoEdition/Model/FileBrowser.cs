@@ -22,7 +22,9 @@ namespace EasyVideoEdition.Model
         private long _fileSize;
         private bool _canOpenFile;
         private FileStream _stream;
+        #endregion
 
+        #region Get/Set
         /// <summary>
         /// Contains the stream of the file.
         /// </summary>
